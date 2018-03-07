@@ -1,9 +1,15 @@
 package io.sunken;
 
+import static io.vertx.core.Vertx.vertx;
+
 public interface Main {
-  static Sunken sunken(Fork... forks) { return new Sunken(forks); }
+  static Sunken sunken(HttpFork... forks) { return new Sunken(forks); }
 
   static void main(String... args) {
-    sunken().start();
+    vertx().deployVerticle(
+      sunken(
+        new HttpGetElectricLight()
+      )
+    );
   }
 }
