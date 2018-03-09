@@ -15,7 +15,7 @@
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
   <modules>
-    <module>sunken-backend</module>
+    <module>sunken-webapp</module>
     <module>sunken-frontend</module>
   </modules>
   <name>Sunken</name>
