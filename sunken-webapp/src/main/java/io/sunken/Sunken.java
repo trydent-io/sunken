@@ -10,7 +10,7 @@ import static java.lang.System.currentTimeMillis;
 import static org.slf4j.LoggerFactory.getLogger;
 
 final class Sunken extends AbstractVerticle implements Verticle {
-  private static final Logger log = getLogger(Sunken.class);
+
 
   private final HttpFork[] forks;
 
@@ -20,14 +20,6 @@ final class Sunken extends AbstractVerticle implements Verticle {
 
   @Override
   public void start() {
-    final long startedMills = currentTimeMillis();
-    vertx
-      .createHttpServer()
-      .requestHandler(
-        httpPath(router(vertx), forks).enter()
-      )
-      .listen(8080);
-    log.info("Sunken has been started in {} ms.", (currentTimeMillis() - startedMills));
   }
 
 }

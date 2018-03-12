@@ -8,7 +8,7 @@ public interface Main {
   static void main(String... args) {
     vertx().deployVerticle(
       sunken(
-        new HttpGetElectricLight()
+        new HttpGetRoute()
       )
     );
   }

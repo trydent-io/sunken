@@ -9,4 +9,5 @@ module sunken.webapp {
   requires vertx.web;
 
   requires gson;
+  requires kotlin.stdlib;
 }

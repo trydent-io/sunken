@@ -16,7 +16,7 @@
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>sunken-webapp</module>
-    <module>sunken-frontend</module>
+    <module>sunken-ui</module>
   </modules>
   <name>Sunken</name>
 
