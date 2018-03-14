@@ -1,15 +1,17 @@
 package io.sunken;
 
-import static io.vertx.core.Vertx.vertx;
+import io.undertow.Undertow;
+
+import static io.undertow.util.Headers.CONTENT_TYPE;
 
 public interface Main {
-  static Sunken sunken(HttpFork... forks) { return new Sunken(forks); }
-
   static void main(String... args) {
-    vertx().deployVerticle(
-      sunken(
-        new HttpGetRoute()
-      )
-    );
+    final Undertow server = Undertow.builder()
+      .addHttpListener(8080, "localhost")
+      .setHandler(exchange -> {
+        exchange.getResponseHeaders().put(CONTENT_TYPE, "text/plain");
+        exchange.getResponseSender().send("Hello World");
+      }).build();
+    server.start();
   }
 }
