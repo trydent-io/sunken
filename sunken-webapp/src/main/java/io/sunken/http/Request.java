@@ -1,6 +1,7 @@
 package io.sunken.http;
 
 import io.undertow.server.HttpServerExchange;
+import io.undertow.util.HeaderValues;
 
 import java.util.Optional;
 
@@ -10,7 +11,7 @@ public interface Request {
   }
 
   boolean is(final Method method);
-  Optional<String> getHeader(final String entry);
+  Optional<HeaderValues> getHeader(final String entry);
 
   byte[] asBytes();
 }

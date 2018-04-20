@@ -1,6 +1,7 @@
 package io.sunken.http;
 
 import io.undertow.server.HttpServerExchange;
+import io.undertow.util.HeaderValues;
 
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -27,11 +28,10 @@ final class RequestImpl implements Request {
   }
 
   @Override
-  public final Optional<String> getHeader(final String entry) {
+  public final Optional<HeaderValues> getHeader(final String entry) {
     return Optional.ofNullable(entry)
       .filter(it -> exchange.getRequestHeaders().contains(entry))
-      .map(it -> exchange.getRequestHeaders().get(entry))
-      .map(it -> it.getFirst());
+      .map(it -> exchange.getRequestHeaders().get(entry));
   }
 
   @Override

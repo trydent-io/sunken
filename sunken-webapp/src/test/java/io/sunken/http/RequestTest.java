@@ -3,6 +3,7 @@ package io.sunken.http;
 import com.google.common.truth.Truth8;
 import io.undertow.server.HttpServerExchange;
 import io.undertow.server.ServerConnection;
+import io.undertow.util.HeaderValues;
 import io.undertow.util.HttpString;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -10,11 +11,11 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.google.common.truth.Truth.assertThat;
 import static io.sunken.http.Method.Get;
-import static io.undertow.Handlers.routing;
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 import static org.mockito.Mockito.mock;
 
@@ -32,11 +33,14 @@ class RequestTest {
   }
 
   @Test
-  void shouldHaveHeader() {
-    exchange.getRequestHeaders().put(new HttpString("Content-Type"), "application/json");
+  void shouldHaveHeaders() {
+    final String[] expected = {"application/json", "text/plain"};
+    exchange.getRequestHeaders().addAll(new HttpString("Content-Type"), List.of(expected));
 
-    Truth8.assertThat(Request.from(exchange).getHeader("Content-Type")).isPresent();
-    Truth8.assertThat(Request.from(exchange).getHeader("Content-Type")).hasValue("application/json");
+    Truth8.assertThat(Request.from(exchange)
+      .getHeader("Content-Type")
+      .map(HeaderValues::toArray))
+      .hasValue(expected);
   }
 
   @Test

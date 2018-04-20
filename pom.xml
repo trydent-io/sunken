@@ -5,9 +5,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>io.trydent</groupId>
+    <groupId>com.github.trydent-io</groupId>
     <artifactId>java9-project</artifactId>
-    <version>1.0.6-SNAPSHOT</version>
+    <version>0.0.11</version>
   </parent>
 
   <groupId>io.sunken</groupId>
